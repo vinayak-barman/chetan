@@ -1,0 +1,36 @@
+---
+title: Communication Paradigm
+description: The essence of communication in agent systems
+icon: ArrowRightLeft
+---
+import defaultMdxComponents from 'fumadocs-ui/mdx';
+
+
+```mermaid
+graph
+    agent1(Agent 1)
+    agent2(Agent 2)
+    user([User])
+
+    agent1 <--> agent2 <--> user
+    agent1 <--> user
+```
+
+There are two possible paradigm available.
+## Paradigms
+### Fully tool-called
+Agents use **tool-calling** with *communication tools* to communicate with other agents or users.
+
+
+
+### Full without user
+<Callout type="warn">
+This paradigm only works in single users,
+</Callout>
+
+## Comparison
+
+| Feature | Fully tool-called | Full without user |
+|---|---|---|
+|Multi-user|✅| Not targetable. All receive when targeted. |
+|Multi-agent|✅|✅|

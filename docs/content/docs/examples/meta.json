@@ -1,0 +1,22 @@
+{
+  "title": "Examples",
+  "description": "Examples built with Chetan",
+  "root": true,
+  "icon": "Library",
+
+  "pages": [
+    "index",
+    "---General---",
+    "general/customer-support",
+    "general/search",
+    "general/deep-research",
+    "---Task---",
+    "tasks/simple",
+    "---Technology---",
+    "tech/computer-use",
+    "tech/mcp",
+    "tech/rag",
+    "---Education---",
+    "ed/university-application"
+  ]
+}

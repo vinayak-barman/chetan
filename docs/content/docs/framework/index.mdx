@@ -1,0 +1,107 @@
+---
+title: Introduction
+description: "Learn about the framework."
+icon: Hand
+---
+
+import {
+    Component,
+    AlignHorizontalDistributeCenter,
+    Share2,
+    ChartSpline,
+    Database,
+    BatteryCharging,
+    SendToBack,
+    NotebookPen,
+    Library,
+    Album,
+    Info,
+    GitCompareArrows,
+    Sparkles
+} from "lucide-react";
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+`Chetan` is an **end-to-end** framework to build, evaluate and deploy language model agent systems. Written in **Rust**, it offers speed and efficiency, while providing a Python interface for ease of use. 
+
+## Features
+
+<Cards>
+    <Card icon={<BatteryCharging className="text-green-500 dark:text-green-300" />} title='Batteries included'>
+        RAG, Tools, Memory, Recommendation, RL/SFT, Multi-agent systems, Evals, and more built-in functionality.
+    </Card>
+    <Card icon={<Component className="text-blue-500 dark:text-blue-300" />} title='Modular architecture'>
+        Extend agent's capabilities with modules for RAG, Recommendation, Memory, NER, Sentiment analysis, and more.
+    </Card>
+    <Card icon={<Share2 className="text-orange-500 dark:text-orange-300" />} title='Multi-entity systems'>
+        Put agents and humans in a network, hierarchy, sequence; any topology. Communication protocols, and multi-entity operations are built-in.
+    </Card>
+    <Card icon={<AlignHorizontalDistributeCenter className="text-purple-500 dark:text-purple-300" />} title='Effortless alignment'>
+        Define alignment metrics and start tracking right away. Continuously update LMs with GRPO RL and SFT.
+    </Card>
+
+    <Card icon={<ChartSpline className="text-cyan-500 dark:text-cyan-300" />} title='Better observability'>
+        Organize like LLMs, entities, tools, vector stores, documents. Observe them all with centralized manager object.
+    </Card>
+
+    <Card icon={<SendToBack className="text-indigo-500 dark:text-indigo-300" />} title='End-to-end lifecycle'>
+        From agent design, evaluation, and deployment to monitoring and retraining, manage every stage of the lifecycle with effortless observability.
+    </Card>
+</Cards>
+
+## Roadmap
+
+Get a complete understanding of the framework and its components by following the roadmap.
+
+<Steps>
+<Step>
+ 
+### Quickstart
+Get your hands dirty!
+
+Finish the quickstart tutorial to get a feel of the framework and its components.
+
+<Card title='Quickstart' icon={<Album />} href='/docs/framework/quickstart'>
+Get started with chetan in 5 minutes
+</Card>
+</Step>
+ 
+<Step>
+ 
+### Quick Reference
+See the overview & philosophy of the framework.
+<Cards>
+<Card title='Overview' icon={<Info />} href='/docs/framework/overview'>
+    An overview of Chetan
+</Card>
+<Card title='Philosophy & Differences' icon={<GitCompareArrows />} href='/docs/framework/overview'>
+    A detailed comparison of Chetan with other frameworks
+</Card>
+</Cards>
+</Step>
+<Step>
+ 
+### Topics
+Learn the fundamental concepts that underpin the framework.
+<Card title='Concepts' icon={<Sparkles />} href='/docs/framework/concepts'>
+    Essential concepts of Chetan
+</Card>
+</Step>
+<Step>
+ 
+### Guide
+Go through the comprehensive guide that follows the [AgentOps](/docs/framework/agent-ops) lifecycle.
+ 
+<Card title='Guide' icon={<NotebookPen />} href='/docs/guide'>
+    A comprehensive guide for building end-to-end agent systems.
+</Card>
+</Step>
+<Step>
+ 
+### Examples
+We have hands-on, practical examples demonstrating solutions to real-world problems. Check them out!
+
+<Card title='Examples' icon={<Library />} href='/docs/examples'>
+    Practical examples demonstrating solutions to real-world problems.
+</Card>
+</Step>
+</Steps>

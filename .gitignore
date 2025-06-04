@@ -1,0 +1,11 @@
+.env
+**/__pycache__/
+**/node_modules/
+**/.next/
+**/target/
+**/temp/
+.DS_Store
+env/
+demos/misc/
+demos/temp/
+r&d/

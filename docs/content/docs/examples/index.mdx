@@ -1,0 +1,77 @@
+---
+title: Examples
+description: Practical examples demonstrating solutions to real-world problems.
+icon: Library
+---
+
+Examples provide practical and worked out scenarios that demonstrate how to leverage chetan efficiently. They are designed to help you understand how to apply the concepts and tools in real-world situations. Each example follows the following structure:
+
+## Problem Statement
+
+A clear and concise description of the problem being addressed.
+
+## Solution Overview
+
+A high-level overview of the solution, including the key components and steps involved.
+
+## Implementation
+
+A detailed explanation of the implementation, including code snippets and explanations of key functions and methods.
+
+### Primitives
+
+Set up the primitives like models, agent architecture and register them with a manager.
+
+#### Language Model
+
+Set up the language model that will be used by the agents.
+Language models can be local or remotely hosted.
+
+#### Tools
+Set up the tools that will be used by the agents. Tools can be local or remotely hosted.
+
+#### Agent Architecture
+
+Set up agent architecture, using modules that modify the stages of agent loop.
+
+### Entities
+
+Set up the entities that will be used in the system.
+
+#### Agents
+
+Define the agents.
+
+#### Users
+
+Identify the users.
+
+### System
+
+Put the entities together in a system.
+
+#### Topology
+
+Decide what topology to use for the system. The topology defines how the agents are connected and how they communicate with each other.
+
+#### Protocols
+
+
+<Callout>
+The *free-text* communication between agents is not structured, and the agents are expected to understand each other. This is a *weak* point in the system, as it relies on the agents' ability to interpret the messages correctly.
+
+Free-text connections are _always available_ whenever a connection is established.
+
+</Callout>
+<Callout type="warn">
+Try to purposefully define protocol schemas.
+
+We recommend not putting **direct tool call** result types, since that will make a **single tool-call** agent redundant. Notice how we created a `SearchResults` protocol schema that can encompass multiple tool call results, such as `TavilyWebSearchResults`, `GoogleSearchResults`, etc. This way, we can have a single agent that can handle multiple tool calls and return a unified result.
+
+Instead, consider defining a **role-specific** protocol schema that can encompass multiple tool call results, effectively justifying the need for the agent as a separate entity.
+
+</Callout>
+
+### Tools
+
+### Orchestration

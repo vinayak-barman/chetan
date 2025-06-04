@@ -1,0 +1,24 @@
+---
+title: "Agent Loop"
+description: "Chetan agent loop"
+icon: Repeat2
+---
+
+## Stages
+### Prologue
+### Process
+#### The process function
+
+```python
+@loop.process
+def process_fn(ctx: ProcessContext):
+    ctx.generate_with_tool_call()
+```
+
+#### Process context functions
+- `append()`: Append a message to the context
+- `generate()`: Generate a text-only message
+- `tool_call()`: Generate tool calls only
+- `generate_with_tool_call()`: Generate both textual content and tool call in one request
+
+### Epilogue

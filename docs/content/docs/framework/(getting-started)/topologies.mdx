@@ -1,0 +1,23 @@
+---
+title: Common Topologies 
+---
+
+## Topologies
+
+### User-Agent
+```mermaid
+graph LR
+    user(User)
+    agent(Agent)
+
+    user <--> agent
+```
+### User-Agent-Supervisor
+```mermaid
+graph LR
+    user(User)
+    agent(Agent)
+    supervisor(Supervisor)
+
+    user <--> agent <--> supervisor
+```

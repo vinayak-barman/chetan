@@ -1,0 +1,10 @@
+{
+  "title": "Zerve",
+  "description": "Serve agent systems",
+  "root": true,
+  "icon": "Zerve",
+  "pages": [
+    "---Introduction---",
+    "index"
+  ]
+}

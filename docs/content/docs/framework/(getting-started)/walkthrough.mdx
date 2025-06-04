@@ -1,0 +1,141 @@
+---
+title: Walkthrough
+description: Quick walkthrough of building successful agent systems
+icon: Hammer
+---
+
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+We'll build the same system you've seen on the quickstart, web searching system; but this time, we will carefully look at each step.
+
+## Create a manager object
+
+**Agent systems require a lot of resources.** Most of the resources are cluttered and unorganized. With a manager object, we register such resources at once for easier access.
+
+
+<Callout>
+We recommend connecting to our open-source observability platform, [Chetanbase](). It provides a unified view of all your agent systems, including their performance, usage, and other metrics.
+</Callout>
+<Callout>
+[Snayu Cloud]() is a fully-managed Chetanbase service. You can [signup for free](https://google.com) and start collecting metrics right away.
+  </Callout>
+  
+<Tabs items={['Snayu Cloud', 'Chetanbase', 'None']}>
+  <Tab value="Snayu Cloud">
+```python
+from chetan import ChetanManager
+import snayu
+
+# TODO: Set `SNAYU_API_KEY` env variables
+mgr = ChetanManager(provider=snayu.provider)
+```
+</Tab>
+  <Tab value="Chetanbase">
+```python
+from chetan import ChetanManager
+import chetanbase
+
+# TODO: Set `CHETANBASE_URL`, `CHETANBASE_API_KEY` env variables
+mgr = ChetanManager(provider=chetanbase.provider)
+```
+</Tab>
+  <Tab value="None">
+```python
+from chetan import ChetanManager
+
+mgr = ChetanManager()
+```
+</Tab>
+</Tabs>
+
+
+## Primitives
+
+### Language models
+
+Language models need to be aligned with our specific use case. Using generic pre-trained models often leads to vague responses, hallucinations, and potential harm.
+
+#### The need for alignment
+
+While API providers like OpenAI offer access to base models and some fine-tuning capabilities, they still lack advanced alignment techniques like RLHF with algorithms such as [GRPO](https://arxiv.org/pdf/2402.03300). As responsible developers, we should at minimum perform Supervised Fine-tuning (SFT) to adapt models to our specific needs.
+
+#### Chetan's alignment capabilities
+
+So we added built-in SFT and RL capabilities using GRPO to [zerve](https://github.com/snayu-ai/zerve), the official agent system server for chetan. With zerve, we can host both, the language models and agent systems in one server.
+
+Tighter integration between LMs and agent systems produces reduce latency, increase efficiency and yield better results.
+
+<Tabs items={['Zerve', 'OpenAI']}>
+  <Tab value="Zerve">
+    ```python
+    from chetan.lm.zerve import ZerveLM
+    import os
+
+    # Set the environment variable for zerve server
+    os.environ["ZERVO_SERVER"] = "http://localhost:8724"  # Replace with your zerve server URL
+
+    llm = ZerveLM()
+
+    # Set as the default language model
+    mgr.llm.default = llm
+    ```
+
+  </Tab>
+
+  <Tab value="OpenAI">
+    ```python
+    from chetan.lm.openai import OpenAILM
+
+    llm = OpenAILM()
+
+    # Set as the default language model
+    mgr.llm.default = llm s
+    ```
+
+  </Tab>
+</Tabs>
+<Callout type="warn">
+  OpenAI, Anthropic, and similar cloud models currently don't support RL through GRPO via API, so *continuous learning* is not possible.
+
+</Callout>
+<Callout>
+  We recommend using local models through Zerve. This allows continuous learning and alignment of the models.
+
+</Callout>
+
+### Modules
+
+When we want to extend the agent's architecture with new functionality, `modules` make extension effortless. Chetan provides built-in modules for diverse range of abilities like Recommendation, Memory, RAG.
+
+```python
+from chetan.modules.rec import ToolRecommender
+from chetan.modules.memory import SimpleKVMemory
+
+# Embedding-based recommender to suggest relevant tools
+tool_rec = ToolRecommender()
+# based on the current context and user input
+kv_mem = SimpleKVMemory(k=4)
+```
+
+### Agent architecture
+
+We will use the `AgentLoop`class. Applying sequential modules, we can extend various stages of the loop, enabling vertical integration of the agent's capabilities. This allows us to create a more complex and capable agent system.
+
+```python
+from chetan.agent import AgentLoop
+
+# Sequentially use the agent modules
+DefaultAgentLoop = AgentLoop().use(
+  tool_rec,
+  kv_mem
+)
+
+# Register the agent loop as default
+mgr.agent_loops["default"] = DefaultAgentLoop
+```
+
+## Entities
+
+## Systems
+
+## Orchestration

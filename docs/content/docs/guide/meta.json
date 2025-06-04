@@ -1,0 +1,15 @@
+{
+  "title": "Guide",
+  "description": "End-to-end guide to chetan",
+  "root": true,
+  "icon": "NotebookPen",
+  "pages": [
+    "index",
+    "---Prerequisites---",
+    "---Planning---",
+    "---Development---",
+    "---Evaluation---",
+    "---Alignment---",
+    "---Deployment---"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "pages": [
+    "network",
+    "hierarchy",
+    "ring",
+    "star",
+    "sequence"
+  ]
+}

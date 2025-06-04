@@ -1,0 +1,23 @@
+---
+title: Ring
+description: Forming a ring topology
+icon: RingTopology
+---
+
+```python
+from chetan.systems.ring import RingSystem
+
+network = RingSystem(
+    mgr.user.default,
+    mgr.agents["searcher"],
+    {
+        "description": "Sending search results to the summarizer",
+        "format": SearchResults,
+    },
+    mgr.agents["summarizer"],
+    {
+        "description": "Sending summary to the user",
+        "format": Summary,
+    },
+)
+```

@@ -1,0 +1,24 @@
+{
+  "title": "Framework",
+  "description": "The chetan framework",
+  "root": true,
+  "icon": "Chetan",
+  "pages": [
+    "---Introduction---",
+    "index",
+    "(intro)/quickstart",
+    "(intro)/overview",
+    "(intro)/comparison",
+    "---Getting started---",
+    "(getting-started)/walkthrough",
+    "(getting-started)/topologies",
+    "---Topics---",
+    "(topics)/concepts",
+    "(topics)/agent-ops",
+    "(topics)/primitives",
+    "(topics)/entity",
+    "(topics)/system",
+    "(topics)/orchestrate",
+    "(topics)/serving"
+  ]
+}

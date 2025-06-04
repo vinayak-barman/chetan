@@ -1,0 +1,55 @@
+---
+title: Config
+description: Using a config file to define our workflow
+---
+
+## Writing a config file
+To speed up the process of creating agents, we can define a config file in YAML format. This file will contain all the necessary information about the agents, how they communicate, their rules, and the tools they will use.
+
+```yaml
+llm:
+  default:
+    provider: openai
+    model: gpt-4o-mini
+    temperature: 0.7
+rules:
+  factual_feedback: "Ensures the accuracy and truthfulness of information presented. Verifies claims and negatives spreading misinformation."
+  comprehensive_search: "Conducts thorough and wide-ranging searches to gather relevant information from diverse sources."
+  source_evaluation: "Critically evaluates the credibility and reliability of sources to prioritize trustworthy information."
+  information_synthesis: "Combines information from multiple sources to create a coherent and comprehensive understanding of the topic."
+  bias_detection: "Identifies and mitigates potential biases in search results and information sources."
+  present_search_results: "Presents search results in a clear, concise, and organized manner."
+  rewrite_search_results: "Rewrites search results to align with a specific objective or viewpoint."
+  alignment: "Ensures that the rewritten search results are aligned with the desired objective or viewpoint."
+entities:
+  human:
+    user: "User wants to find information on a specific topic and requires assistance in conducting research, evaluating sources, and synthesizing information."
+  agent:
+    web_researcher: 
+      description: "Conducts comprehensive online research, evaluates sources critically, synthesizes information from diverse sources, and presents factual findings while minimizing bias."
+      rules:
+        - factual_feedback
+        - comprehensive_search
+        - source_evaluation
+        - information_synthesis
+        - bias_detection
+        - present_search_results
+    search_result_rewriter:
+      description: "Rewrites and reformats search results to improve clarity, readability, and alignment with specific objectives while maintaining factual accuracy."
+      rules:
+        - rewrite_search_results
+        - alignment
+tools:
+  # We only need to search the internet and check for plagiarism
+  - internet.search.tavily
+  - internet.plagiarism_checker
+system:
+  default:
+    description: "A network of agents and a user, where the user interacts with the web_researcher agent to conduct research, and the web_researcher interacts with the search_result_rewriter agent to refine and present the findings."
+    topology: network
+    connections:
+      # Two way communication between the user and the web researcher is allowed, but rewriter has 
+      # two-way communication allowed only between it and the researcher. To send information to the 
+      # user, it would need to pass it through the researcher.
+      - "user <-> web_researcher <-> search_result_rewriter"
+```

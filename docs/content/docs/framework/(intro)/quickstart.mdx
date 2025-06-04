@@ -1,0 +1,69 @@
+---
+title: Quickstart
+description: Get started with chetan in 5 minutes
+icon: Album
+---
+
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+Within 5 minutes, we will build an **internet searching agent system** that can search the internet, check for plagiarism, and rewrite search results. This is a simple example of how to use Chetan to create an agent system.
+
+<Steps>
+<Step>
+### Installing the python package
+```bash
+pip install chetan
+```
+</Step>
+<Step>
+### Importing necessary modules
+```python title="quickstart.py"
+# A manager to organize resources
+from chetan import ChetanManager
+
+# Language model support for OpenAI
+from chetan.lm.openai import OpenAILM
+
+# Tool recommendation and memory modules
+from chetan.modules.rec import ToolRecommender
+from chetan.modules.memory import SimpleKVMemory
+
+# Importing the agent loop
+from chetan.agent import AgentLoop
+```
+</Step>
+<Step>
+### Setup resources
+```python title="quickstart.py"
+# Initialize a manager for organizing resources
+mgr = ChetanManager()
+
+# Make sure to set the OpenAI API key "OPENAI_API_KEY" in your environment variables
+llm = OpenAILM()
+
+# Register the LLM with the manager
+mgr.llm.default = llm
+```
+</Step>
+<Step>
+### Defining agent architecture
+```python title="quickstart.py"
+# Embedding-based recommender to suggest relevant tools
+tool_rec = ToolRecommender() 
+# based on the current context and user input
+kv_mem = SimpleKVMemory(k=4)
+
+# Sequentially use the agent modules
+DefaultAgentLoop = AgentLoop().use(
+  tool_rec,
+  kv_mem
+)
+
+# Register the agent loop as default
+mgr.agent_loops["default"] = DefaultAgentLoop
+```
+
+<Callout>
+You wouldn't need to create an account for any provider. Everything here is fully local
+</Callout></Step>
+</Steps>
